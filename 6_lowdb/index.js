@@ -3,13 +3,13 @@ var app = express();
 var bodyParser = require('body-parser');
 var low = require('lowdb');
 var FileSync = require('lowdb/adapters/FileSync');
+
 var adapter = new FileSync('db.json');
 
 var db = low(adapter);
 
 db.defaults({ users: [] })
   .write();
-
 
 var port = 3000;
 
@@ -51,7 +51,6 @@ app.post('/users/create', function(req, res) {
     res.redirect('/users');
     // console.log(req.body);
 });
-
 
 app.listen(port, function() {
     console.log('Server listening on port' + port);
