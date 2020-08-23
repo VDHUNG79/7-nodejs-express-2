@@ -21,7 +21,8 @@
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
     "pug": "^3.0.0",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "underscore": "^1.10.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

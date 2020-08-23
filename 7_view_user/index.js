@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var low = require('lowdb');
 var shortid = require('shortid');
+var _ = require('underscore');
 
 var FileSync = require('lowdb/adapters/FileSync');
 
@@ -64,6 +65,19 @@ app.post('/users/create', function(req, res) {
     db.get('users').push(req.body).write();
     res.redirect('/users');
     // console.log(req.body);
+});
+
+app.delete('/users/:id/delete', function (req, res) {
+    var id = (req.params.id);
+    var matchedUsers = _.findWhere(users, { id: id });
+
+    if (!matchedUsers) {
+        res.status(404).json({ "error": "no user found with that id" })
+    } else {
+        users = _.findWhere(users, matchedUsers);
+        res.json(matchedUsers);
+    }
+    res.redirect('/users');
 });
 
 app.listen(port, function() {
